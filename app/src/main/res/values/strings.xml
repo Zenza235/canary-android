@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Canary</string>
+    <string name="action_search">Search</string>
+    <string name="action_settings">Settings</string>
 </resources>
