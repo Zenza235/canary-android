@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Default colors -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +8,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Custom color palette -->
+    <color name="white_cultured">#F6F4F5</color>
+    <color name="yellow_crayola">#FED766</color>
+    <color name="blue_pacific">#47A8BD</color>
+    <color name="blue_munsell">#338CAB</color>
+    <color name="blue_celadon">#1E6F98</color>
+    <color name="blue_sapphire">#0B4F6C</color>
 </resources>
