@@ -30,12 +30,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (id) {
-            case R.id.action_search:
-                Log.d(TAG, "Search item selected.");
-                break;
-            case R.id.action_settings:
-                Log.d(TAG, "Settings item selected.");
+        if (id == R.id.action_search) {
+            Log.d(TAG, "Search item selected.");
+            return true;
+        }
+        if (id == R.id.action_settings) {
+            Log.d(TAG, "Settings item selected.");
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
