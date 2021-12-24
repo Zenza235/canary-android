@@ -17,7 +17,7 @@
         android:textSize="18sp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_create_new_project"
+        android:id="@+id/fab_create_project"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
