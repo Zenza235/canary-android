@@ -6,11 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".RecordActivity">
 
-    <Button
-        android:id="@+id/btn_record_audio"
+    <ImageButton
+        android:id="@+id/btn_start_record"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/record_audio_desc"/>
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:layout_marginBottom="48dp"
+        android:text="@string/start_record_desc"
+        android:src="@drawable/ic_baseline_fiber_manual_record_24"/>
+
+    <ImageButton
+        android:id="@+id/btn_stop_record"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/stop_record_desc"
+        android:src="@drawable/ic_baseline_stop_circle_24"/>
 
 </FrameLayout>
