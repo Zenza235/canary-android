@@ -1,9 +1,7 @@
 package com.example.canary;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -69,6 +67,9 @@ public class RecordActivity extends AppCompatActivity {
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.OGG);
+        // TODO: test if works, set up tarsos
+        // Get output file, then run analysis on separate thread
+        // Get result as .pdf or .musicxml
         recorder.setOutputFile(getFilesDir());
         try {
             recorder.prepare();
