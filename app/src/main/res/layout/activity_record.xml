@@ -7,28 +7,22 @@
 
     <LinearLayout
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/btn_start_record"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:layout_marginBottom="48dp"
-            android:text="@string/start_record_desc"
-            android:src="@drawable/ic_baseline_fiber_manual_record_24"/>
+            android:layout_height="48dp"
+            android:layout_width="128dp"
+            android:contentDescription="@string/start_record_desc"
+            android:src="@drawable/ic_baseline_fiber_manual_record_24" />
 
         <ImageButton
             android:id="@+id/btn_stop_record"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:layout_marginTop="48dp"
-            android:text="@string/stop_record_desc"
+            android:layout_height="48dp"
+            android:layout_width="128dp"
+            android:contentDescription="@string/stop_record_desc"
             android:src="@drawable/ic_baseline_stop_24"/>
 
     </LinearLayout>
