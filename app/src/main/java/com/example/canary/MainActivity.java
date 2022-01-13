@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
         mEmptyListMessageDisplay = (TextView) findViewById(R.id.tv_empty_list_message_display);
 
         mCreateProjectFab = (FloatingActionButton) findViewById(R.id.fab_create_project);
+        mCreateProjectFab.setOnClickListener(v -> {
+            Intent startRecordActivityIntent = new Intent(this, RecordActivity.class);
+            startActivity(startRecordActivityIntent);
+        });
     }
 
     @Override

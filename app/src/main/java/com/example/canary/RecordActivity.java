@@ -16,6 +16,8 @@ public class RecordActivity extends AppCompatActivity {
     private ImageButton mStartRecordBtn;
     private ImageButton mStopRecordBtn;
 
+    private MediaRecorder recorder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,26 +25,33 @@ public class RecordActivity extends AppCompatActivity {
 
         mStartRecordBtn = (ImageButton) findViewById(R.id.btn_start_record);
         mStopRecordBtn = (ImageButton) findViewById(R.id.btn_stop_record);
+        mStopRecordBtn.setEnabled(false);
 
-        MediaRecorder recorder = new MediaRecorder();
+        MediaRecorder recorder = new MediaRecorder(this);
 
         mStartRecordBtn.setOnClickListener(v -> {
             Log.d(TAG, "Start recording.");
-            recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            recorder.setOutputFormat(MediaRecorder.OutputFormat.OGG);
-            recorder.setOutputFile(getFilesDir());
-            try {
-                recorder.prepare();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            recorder.start();
+            mStartRecordBtn.setEnabled(false);
+            mStopRecordBtn.setEnabled(true);
+
+            startRecording();
         });
 
         mStopRecordBtn.setOnClickListener(v -> {
             Log.d(TAG, "Stop recording.");
-            recorder.stop();
-            recorder.release();
+            
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        
+    }
+
+    private void checkPermissions() {
+
+    }
+
+    private void startRecording() {
     }
 }
