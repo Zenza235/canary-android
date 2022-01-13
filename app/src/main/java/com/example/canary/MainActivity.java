@@ -8,13 +8,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = "MainActivity";
 
     private TextView mEmptyListMessageDisplay;
     private FloatingActionButton mCreateProjectFab;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         mCreateProjectFab = (FloatingActionButton) findViewById(R.id.fab_create_project);
         mCreateProjectFab.setOnClickListener(v -> {
+            Log.d(TAG, "Start new project");
             Intent startRecordActivityIntent = new Intent(this, RecordActivity.class);
             startActivity(startRecordActivityIntent);
         });

@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
 
-import java.io.IOException;
-
 public class RecordActivity extends AppCompatActivity {
 
     private static final String TAG = RecordActivity.class.getSimpleName();
@@ -27,25 +25,24 @@ public class RecordActivity extends AppCompatActivity {
         mStopRecordBtn = (ImageButton) findViewById(R.id.btn_stop_record);
         mStopRecordBtn.setEnabled(false);
 
-        MediaRecorder recorder = new MediaRecorder(this);
+        MediaRecorder recorder = new MediaRecorder();
 
         mStartRecordBtn.setOnClickListener(v -> {
             Log.d(TAG, "Start recording.");
             mStartRecordBtn.setEnabled(false);
             mStopRecordBtn.setEnabled(true);
-
-            startRecording();
         });
 
         mStopRecordBtn.setOnClickListener(v -> {
             Log.d(TAG, "Stop recording.");
-            
+            mStartRecordBtn.setEnabled(true);
+            mStopRecordBtn.setEnabled(false);
         });
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void checkPermissions() {
