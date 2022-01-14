@@ -9,6 +9,7 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -24,28 +25,28 @@ public class RecordActivity extends AppCompatActivity {
 
     // Permission to RECORD_AUDIO
     private boolean permissionToRecordAccepted = false;
-    private String[] permissions = { Manifest.permission.RECORD_AUDIO };
+    private final String[] permissions = { Manifest.permission.RECORD_AUDIO };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
-        mStartRecordBtn = (ImageButton) findViewById(R.id.btn_start_record);
-        mStopRecordBtn = (ImageButton) findViewById(R.id.btn_stop_record);
+        mStartRecordBtn = findViewById(R.id.btn_start_record);
+        mStopRecordBtn = findViewById(R.id.btn_stop_record);
         mStopRecordBtn.setEnabled(false);
 
         ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
 
         mStartRecordBtn.setOnClickListener(v -> {
-            Log.d(TAG, "Start recording.");
+            Toast.makeText(this, "Starting recording...", Toast.LENGTH_SHORT).show();
             mStartRecordBtn.setEnabled(false);
             mStopRecordBtn.setEnabled(true);
             startRecording();
         });
 
         mStopRecordBtn.setOnClickListener(v -> {
-            Log.d(TAG, "Stop recording.");
+            Toast.makeText(this, "Stopping recording...", Toast.LENGTH_SHORT).show();
             mStartRecordBtn.setEnabled(true);
             mStopRecordBtn.setEnabled(false);
             stopRecording();

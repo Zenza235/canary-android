@@ -5,10 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".RecordActivity">
 
-    <LinearLayout
+    <TextView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
+        android:text="@string/record_activity_desc"
+        android:textSize="18sp"/>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:paddingBottom="16dp"
         android:orientation="horizontal">
 
         <ImageButton

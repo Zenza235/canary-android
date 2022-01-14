@@ -6,4 +6,10 @@
     <string name="fab_content_desc">Create new project</string>
     <string name="start_record_desc">Start Recording</string>
     <string name="stop_record_desc">Stop Recording</string>
+    <string name="untitled_project_name">Untitled Project</string>
+    <string name="popup_desc">Set the title of your new project.</string>
+    <string name="btn_cancel_desc">Cancel</string>
+    <string name="record_activity_desc">Record audio that you want to transcribe.</string>
+    <string name="btn_create_desc">Create</string>
+    <string name="et_project_title_hint">Title of project</string>
 </resources>
