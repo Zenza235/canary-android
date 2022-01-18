@@ -2,34 +2,23 @@ package com.example.canary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = MainActivity.class.getSimpleName();
 
-    /* Main Activity components */
+    // TODO: implement RecyclerView that reads from internal storage
+    // text will be invisible if data can be converted into RecyclerView
     private TextView mEmptyListMessageDisplay;
     private FloatingActionButton mCreateProjectFab;
-
-    /* Popup components */
-    private PopupWindow mPopupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         mCreateProjectFab = findViewById(R.id.fab_create_project);
         mCreateProjectFab.setOnClickListener(v -> {
-            Log.d(TAG, "Start new project");
-            openPopup();
+            NameProjectDialogFragment fragment = new NameProjectDialogFragment();
+            fragment.show(getSupportFragmentManager(), "fragment_project_name");
         });
     }
 
@@ -66,30 +55,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void openPopup() {
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_window, null);
-        mPopupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        mPopupWindow.setElevation(20);
-
-        FrameLayout mFrameLayout = findViewById(R.id.fl);
-
-        Button mCancelBtn = findViewById(R.id.btn_cancel);
-        Button mCreateBtn = findViewById(R.id.btn_create);
-
-        Log.d(TAG, String.valueOf(mCancelBtn == null));
-
-        mCancelBtn.setOnClickListener(v -> {
-            Toast.makeText()
-            mPopupWindow.dismiss();
-        });
-
-        mCreateBtn.setOnClickListener(v -> {
-            Toast.makeText(this, "Creating new project...", Toast.LENGTH_SHORT).show();
-        });
-
-        mPopupWindow.showAtLocation(mFrameLayout, Gravity.CENTER, 0, 0);
     }
 }
