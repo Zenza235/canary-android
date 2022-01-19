@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    // TODO: implement RecyclerView that reads from internal storage
+    // text will be invisible if data can be converted into RecyclerView
     private TextView mEmptyListMessageDisplay;
     private FloatingActionButton mCreateProjectFab;
 
@@ -23,9 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mEmptyListMessageDisplay = (TextView) findViewById(R.id.tv_empty_list_message_display);
+        mEmptyListMessageDisplay = findViewById(R.id.tv_empty_list_message_display);
 
-        mCreateProjectFab = (FloatingActionButton) findViewById(R.id.fab_create_project);
+        mCreateProjectFab = findViewById(R.id.fab_create_project);
+        mCreateProjectFab.setOnClickListener(v -> {
+            NameProjectDialogFragment fragment = new NameProjectDialogFragment();
+            fragment.show(getSupportFragmentManager(), "fragment_project_name");
+        });
     }
 
     @Override

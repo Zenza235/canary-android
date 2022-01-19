@@ -9,11 +9,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Custom color palette -->
-    <color name="white_cultured">#F6F4F5</color>
-    <color name="yellow_crayola">#FED766</color>
-    <color name="blue_pacific">#47A8BD</color>
-    <color name="blue_munsell">#338CAB</color>
-    <color name="blue_celadon">#1E6F98</color>
-    <color name="blue_sapphire">#0B4F6C</color>
+    <!-- Custom colors -->
+    <color name="yellow_200">#FED766</color>
+    <color name="yellow_700">#FEC534</color>
+    <color name="blue_200">#47A8BD</color>
+    <color name="blue_500">#1E6F98</color>
+    <color name="blue_700">#0B4F6C</color>
 </resources>
