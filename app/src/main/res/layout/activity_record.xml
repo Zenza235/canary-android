@@ -32,21 +32,14 @@
             android:textSize="18sp"/>
 
         <Button
-            android:id="@+id/btn_start_record"
+            android:id="@+id/btn_record"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:backgroundTint="@color/yellow_200"
             android:text="@string/start_record_desc" />
 
         <Button
-            android:id="@+id/btn_stop_record"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:backgroundTint="@color/yellow_200"
-            android:text="@string/stop_record_desc" />
-
-        <Button
-            android:id="@+id/btn_play_record"
+            android:id="@+id/btn_playback"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:backgroundTint="@color/yellow_200"

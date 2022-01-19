@@ -24,14 +24,13 @@ public class RecordActivity extends AppCompatActivity {
 
     private FloatingActionButton mAnalyzeAudioFab;
 
-    private Button mStartRecordBtn;
-    private Button mStopRecordBtn;
-    private Button mPlayRecordBtn;
+    private Button mRecordBtn;
+    private Button mPlaybackBtn;
 
     private MediaRecorder recorder;
     private MediaPlayer player;
 
-    private String fileName;
+    private String filePath;
 
     // Permission to RECORD_AUDIO
     private boolean permissionToRecordAccepted = false;
@@ -47,34 +46,43 @@ public class RecordActivity extends AppCompatActivity {
             // TODO: use AudioDispatcher to start processing audio file
         });
 
-        mStartRecordBtn = findViewById(R.id.btn_start_record);
-        mStartRecordBtn.setOnClickListener(v -> {
-            Toast.makeText(this, "Starting recording...", Toast.LENGTH_SHORT).show();
-            startRecording();
-        });
-
-        mStopRecordBtn = findViewById(R.id.btn_stop_record);
-        mStopRecordBtn.setEnabled(false);
-        mStopRecordBtn.setOnClickListener(v -> {
-            Toast.makeText(this, "Stopping recording...", Toast.LENGTH_SHORT).show();
-            stopRecording();
-        });
-
-        final boolean[] mStartPlaying = {true};
-        mPlayRecordBtn = findViewById(R.id.btn_play_record);
-        mPlayRecordBtn.setOnClickListener(v -> {
-            onPlay(mStartPlaying[0]);
-            if (mStartPlaying[0]) {
-                mPlayRecordBtn.setText(R.string.stop_playing);
+        final boolean[] startRecording = {true};
+        mRecordBtn = findViewById(R.id.btn_record);
+        mRecordBtn.setOnClickListener(v -> {
+            onRecord(startRecording[0]);
+            if (startRecording[0]) {
+                mRecordBtn.setText(R.string.stop_record_desc);
             } else {
-                mPlayRecordBtn.setText(R.string.start_playing);
+                mRecordBtn.setText(R.string.start_record_desc);
             }
-            mStartPlaying[0] = !mStartPlaying[0];
+            startRecording[0] = !startRecording[0];
+        });
+
+        final boolean[] startPlaying = {true};
+        mPlaybackBtn = findViewById(R.id.btn_playback);
+        mPlaybackBtn.setOnClickListener(v -> {
+            onPlay(startPlaying[0]);
+            if (startPlaying[0]) {
+                mPlaybackBtn.setText(R.string.stop_playing);
+            } else {
+                mPlaybackBtn.setText(R.string.start_playing);
+            }
+            startPlaying[0] = !startPlaying[0];
 
 
         });
 
         ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
+    }
+
+    private void onRecord(boolean start) {
+        if (start) {
+            Toast.makeText(this, "Starting recording...", Toast.LENGTH_SHORT).show();
+            startRecording();
+        } else {
+            Toast.makeText(this, "Stopping recording...", Toast.LENGTH_SHORT).show();
+            stopRecording();
+        }
     }
 
     private void onPlay(boolean start) {
@@ -99,17 +107,15 @@ public class RecordActivity extends AppCompatActivity {
     }
 
     private void startRecording() {
-        mStartRecordBtn.setEnabled(false);
-        mStopRecordBtn.setEnabled(true);
-
         String path = Project.instance.getDir().getAbsolutePath();
-        fileName = path + File.separator + "audio";
+        filePath = path + File.separator + "audio";
 
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-        recorder.setOutputFile(fileName);
+        recorder.setAudioSamplingRate(44100);
+        recorder.setOutputFile(filePath);
         try {
             recorder.prepare();
             recorder.start();
@@ -119,29 +125,25 @@ public class RecordActivity extends AppCompatActivity {
     }
 
     private void stopRecording() {
-        mStartRecordBtn.setEnabled(true);
-        mStopRecordBtn.setEnabled(false);
-
         recorder.stop();
         recorder.release();
         recorder = null;
     }
 
     private void startPlaying() {
-        mStartRecordBtn.setEnabled(false);
-        mStopRecordBtn.setEnabled(false);
+        mRecordBtn.setEnabled(false);
 
-        if (fileName == null) {
-            Toast.makeText(this, "No recording found.", Toast.LENGTH_SHORT).show();
-            mStartRecordBtn.setEnabled(true);
-            mStopRecordBtn.setEnabled(true);
+        if (filePath == null) {
+            Toast.makeText(this, "Please record something first.", Toast.LENGTH_SHORT).show();
+            mRecordBtn.setEnabled(true);
             return;
         }
 
         player = new MediaPlayer();
         try {
-            player.setDataSource(fileName);
+            player.setDataSource(filePath);
             player.prepare();
+            player.setVolume(1f, 1f);
             player.start();
         } catch (IOException e) {
             Log.e(TAG, "prepare() failed");
@@ -149,13 +151,12 @@ public class RecordActivity extends AppCompatActivity {
     }
 
     private void stopPlaying() {
+        mRecordBtn.setEnabled(true);
+
         if (player == null) {
-            Toast.makeText(this, "No recording found.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please record something first.", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        mStartRecordBtn.setEnabled(true);
-        mStopRecordBtn.setEnabled(true);
 
         player.release();
         player = null;
